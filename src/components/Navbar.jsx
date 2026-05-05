@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { UserContext } from "../contexts/UserContext";
 import { signOut } from "../services/authService";
 
@@ -17,9 +17,13 @@ const Navbar=()=>{
         <nav className="navbar">
             <h1 className="navbar-title">Shelved</h1>
             {user&&(
+                <>
+                <Link to='/'>Home</Link>
+                <Link to='/books'>My Shelf</Link>
                 <button className="navbar-signout" onClick={handleSignOut}>
                     Sign out
                 </button>
+                </>
             )}
         </nav>
     )
