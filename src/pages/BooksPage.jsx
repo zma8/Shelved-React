@@ -32,10 +32,10 @@ const BooksPage = () => {
         }
     }
 
-    const handleUpdateBook=async (IdleDeadline,formData)=>{
+    const handleUpdateBook=async (id,formData)=>{
         try{
-            const updateBook=await updateBook(id,formData)
-            setBooks(books.map((book)=> (book._id===id?updateBook:book)))
+            const updatedBook=await updateBook(id,formData)
+            setBooks(books.map((book)=> (book._id===id?updatedBook:book)))
         }catch(err){
             setError('Could not update book')
         }
