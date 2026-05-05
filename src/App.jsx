@@ -1,13 +1,13 @@
 import { useContext } from 'react'
 import { Routes,Route } from 'react-router-dom'
 import { UserContext } from './contexts/UserContext'
-import Navbar from './pages/Navbar'
+import Navbar from './components/Navbar'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 
 function App() {
-  const user=useContext(UserContext)
+  const {user}=useContext(UserContext)
 
   return (
     <>
