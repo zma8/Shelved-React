@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
+import BooksPage from './pages/BooksPage'
 
 function App() {
   const {user}=useContext(UserContext)
@@ -16,12 +17,13 @@ function App() {
         {user?(
             <>
             <Route path='/' element={<HomePage/>}/>
+            <Route path='/books' element={<BooksPage/>}/>
             </>
         ):(
             <Route path='/' element={<LoginPage/>}/>
         )}
-        <Route path='sign-up' element={<SignupPage/>}/>
-        <Route path='sign-in' element={<LoginPage/>}/>
+        <Route path='/sign-up' element={<SignupPage/>}/>
+        <Route path='/sign-in' element={<LoginPage/>}/>
      </Routes>
     </>
   )

@@ -4,7 +4,7 @@ const getToken=()=>localStorage.getItem('token')
 
 const getAllBooks=async()=>{
     const res=await fetch(BASE_URL,{
-        headers:{ Authorization:`Bearer${getToken()}`
+        headers:{ Authorization:`Bearer ${getToken()}`
         },
     })
     const data=await res.json()
@@ -19,7 +19,7 @@ const createBook=async(formData)=>{
         method:'POST',
         headers:{
             'Content-Type':'application/json',
-            Authorization:`Bearer${getToken()}`,
+            Authorization:`Bearer ${getToken()}`,
         },
         body:JSON.stringify(formData),
     })
@@ -35,7 +35,7 @@ const updateBook=async(id,formData)=>{
         method:'PUT',
         headers:{
             'Content-Type':'application/json',
-            Authorization:`Bearer${getToken()}`,
+            Authorization:`Bearer ${getToken()}`,
         },
         body:JSON.stringify(formData),
     })
