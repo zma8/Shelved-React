@@ -1,16 +1,65 @@
-# React + Vite
+# Shelved — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A reading list app for people who never finish the books they start. No guilt, no progress bars, no streaks.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- **React** 
+- **React Router v6**
+- **Context API** for auth state
+- **Deployed on:** Vercel
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js v18+
+- Shelved API running locally or deployed
+
+### Installation
+
+```bash
+git clone https://github.com/zma8/Shelved-React.git
+cd Shelved-React
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file in the root and don't commit this
+
+### Run Locally
+
+```bash
+npm run dev
+```
+
+App runs at `http://localhost:5173`
+
+---
+
+## Key Design Decisions
+
+**Status language matters.** Instead of "Reading / Want to Read / Finished" the app uses language that matches how this user actually lives — Maybe today?, Loading..., Resting, Done, Not for me.
+
+**No delete.** Books can only be moved to "Not for me". Deleting feels like failure. This doesn't.
+
+**Highlight popup.** When marking a book Done or Not for me, the app asks one optional question — what worked or what didn't. It saves to the book card permanently.
+
+**Random pick.** The home page surfaces one random book from your waiting pile with a soft prompt. Not a notification, just a question.
+
+---
+
+## Backend repo
+
+[Shelved-API](https://github.com/zma8/Shelved-api)
+
+---
+
+## Author
+
+Zainab Moosa — [github.com/zma8](https://github.com/zma8)
