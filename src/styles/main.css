@@ -483,6 +483,22 @@ body {
   max-width: 440px;
   z-index: 100;
   box-shadow: 0 12px 40px rgba(109, 40, 217, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+.editbook-container2 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border-radius: 18px;
+  padding: 36px;
+  width: 100%;
+  max-width: 440px;
+  z-index: 100;
+  box-shadow: 0 12px 40px rgba(109, 40, 217, 0.15);
 }
 
 .editbook-title {
@@ -541,8 +557,16 @@ body {
   resize: none;
   height: 120px;
   transition: border-color 0.2s;
+   width: 100%;
+  max-width: 320px;
+  margin: 16px 0;
 }
 
+.editbook-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
 .editbook-textarea:focus {
   border-color: #6d28d9;
 }
@@ -550,6 +574,19 @@ body {
 .editbook-error {
   color: #dc2626;
   font-size: 0.82rem;
+}
+.editbook-button{
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  background-color: #6d28d9;
+  color: #ffffff;
+  border: none;
+  transition: background-color 0.2s;
+  margin-top: 8px;
 }
 
 .editbook-button-submit {

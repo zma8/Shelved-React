@@ -80,8 +80,10 @@ const EditBookModal = ({ book, onUpdate, onClose }) => {
                     value={highlightText}
                     onChange={(e)=> setHighlightText(e.target.value)}
                     />
+                    <div className="editbook-actions">
                     <button className="editbook-button" onClick={handleHighlightSubmit}>Save</button>
                     <button className="editbook-button" onClick={handleHighlightSkip}>Skip</button>
+                    </div>
                 </div>
             </>
         )
@@ -90,7 +92,7 @@ const EditBookModal = ({ book, onUpdate, onClose }) => {
   return (
     <>
  <div className="modal-overlay" onClick={onClose}></div>
-    <div className="editbook-container" onClick={(e)=>e.stopPropagation()}>
+    <div className="editbook-container2" onClick={(e)=>e.stopPropagation()}>
         <h2 className="editbook-title">Edit book</h2>
         <form className="editbook-form" onSubmit={handleSubmit}>
             <input className="editbook-input"
