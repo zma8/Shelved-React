@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const STATUSES = ['Maybe today?', 'Loading...', 'Resting', 'Done enough', 'Not for me']
+const STATUSES = ['Maybe today?', 'Loading...', 'Resting', 'Done', 'Not for me']
 
 
 const EditBookModal = ({ book, onUpdate, onClose }) => {
@@ -9,7 +9,11 @@ const EditBookModal = ({ book, onUpdate, onClose }) => {
         status: book.status,
         note: book.note || '',
         mood: book.mood || '',
+        highlight: book.highlight || '',
     })
+    const [showHighlightPopup,setShowHighlightPopup]=useState(false)
+    const [highlightText,setHighlightText]=useState('')
+    const [pendingFormData,setPendingFormData]=useState(null)
     const [error,setError]=useState('')
 
     const handleChange=(e)=>{
@@ -22,6 +26,16 @@ const EditBookModal = ({ book, onUpdate, onClose }) => {
             setError('Title is required')
             return
         }
+        if(formData.status==='Done'&&book.status!=='Done'){
+            setPendingFormData(formData)
+            setShowHighlightPopup(true)
+            return
+        }
+        if(formData.status==='Not for me'&&book.status!=='Not for me'){
+            setPendingFormData(formData)
+            setShowHighlightPopup(true)
+            return
+        }
         try{
             await onUpdate(formData)
         }catch(err){
@@ -29,8 +43,54 @@ const EditBookModal = ({ book, onUpdate, onClose }) => {
         }
     } 
 
+    const handleHighlightSubmit=async()=>{
+        try{
+            await onUpdate({...pendingFormData,highlight: highlightText})
+            setShowHighlightPopup(false)
+        }catch(err){
+            setError('Could not update book')
+        }
+    }
+
+    const handleHighlightSkip=async()=>{
+        try{
+            await onUpdate(pendingFormData)
+            setShowHighlightPopup(false)
+        }catch(err){
+            setError('Could not update book')
+        }
+    }
+
+    if(showHighlightPopup){
+        return(
+            <>
+                <div className="modal-overlay" onClick={onClose}/>
+                <div className="editbook-container" onClick={(e)=>e.stopPropagation()}>
+                    <h2 className="editbook-title">
+                        {pendingFormData.status==='Done'
+                        ? 'What was your favourite part?'
+                        :'What didnt work for you ?'}
+                    </h2>
+                    <textarea className="editbook-textarea"
+                    placeholder={
+                        pendingFormData.status==='Done'
+                        ? 'Amoment , a quote, a feeling...'
+                        : 'Too slow , not my genre, wrong timing'
+                    }
+                    value={highlightText}
+                    onChange={(e)=> setHighlightText(e.target.value)}
+                    />
+                    <button className="editbook-button" onClick={handleHighlightSubmit}>Save</button>
+                    <button className="editbook-button" onClick={handleHighlightSkip}>Skip</button>
+                </div>
+            </>
+        )
+    }
+
   return (
-    <div className="editbook-container">
+    <>
+ <div className="modal-overlay" onClick={onClose}></div>
+    <div className="editbook-container" onClick={(e)=>e.stopPropagation()}>
         <h2 className="editbook-title">Edit book</h2>
         <form className="editbook-form" onSubmit={handleSubmit}>
             <input className="editbook-input"
@@ -71,6 +131,7 @@ const EditBookModal = ({ book, onUpdate, onClose }) => {
             <button className="editbook-button" type="button" onClick={onClose}>Cancel</button>
         </form>
     </div>
+    </>
   )
 }
 

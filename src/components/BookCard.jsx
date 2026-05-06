@@ -23,8 +23,9 @@ const BookCard=({book,onUpdate})=>{
         <div className="bookcard-container">
             <h4 className="bookcard-title">{book.title}</h4>
             <StatusBadge status={book.status}/>
-            {book.note &&<p>{book.note}</p>}
-            <p>Last opened: {formatDate(book.lastOpened)}</p>
+            {book.note &&<p className="bookcard-note">{book.note}</p>}
+            {book.highlight &&<p className="bookcard-highlight">{book.highlight}</p>}
+            <p className="bookcard-date">Last opened: {formatDate(book.lastOpened)}</p>
             <button className="bookcard-button" onClick={()=>setShowEditModal(true)}>Edit</button>
             {showEditModal &&(
                 <EditBookModal

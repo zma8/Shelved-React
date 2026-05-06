@@ -3,7 +3,7 @@ import { getAllBooks,createBook, updateBook } from "../services/bookService"
 import BookSection from'../components/BookSection'
 import AddBookModal from '../components/AddBookModal'
 
-const STATUSES=['Maybe today?', 'Loading...', 'Resting', 'Done enough', 'Not for me']
+const STATUSES=['Maybe today?', 'Loading...', 'Resting', 'Done', 'Not for me']
 
 const BooksPage = () => {
     const [books,setBooks]=useState([])
@@ -19,7 +19,7 @@ const BooksPage = () => {
                 setError('Could not load your books')
             }
         }
-        fetchBooks(0)
+        fetchBooks()
     },[])
 
     const handleAddBook=async(formData)=>{
@@ -45,6 +45,7 @@ const BooksPage = () => {
      
   return (
     <div className="books-container">
+        <h2 className="books-title">Your shelf</h2>
       <button className="books-button" onClick={()=>setShowAddModal(true)}>+Add book</button>
        {error && <p className="books-error">{error}</p>}
        {STATUSES.map((status)=>(

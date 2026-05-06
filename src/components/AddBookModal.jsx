@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const STATUSES = ['Maybe today?', 'Loading...', 'Resting', 'Done enough', 'Not for me']
+const STATUSES = ['Maybe today?', 'Loading...', 'Resting', 'Done', 'Not for me']
 
 const AddBookModal = ({ onAdd, onClose }) => {
     const [formData,setFormData]=useState({
@@ -29,7 +29,9 @@ const AddBookModal = ({ onAdd, onClose }) => {
     }
 
   return(
-  <div className="addbookmodal-container">
+    <>
+ <div className="modal-overlay" onClick={onClose}></div>
+  <div className="addbookmodal-container" onClick={(e)=>e.stopPropagation()} >
     <h2 className="addbookmodal-title">Add a book</h2>
     <form className="addbookmodal-form" onSubmit={handleSubmit}>
         <input className="addbookmodal-input"
@@ -71,6 +73,7 @@ const AddBookModal = ({ onAdd, onClose }) => {
         <button className="addbookmodal-button" type="button" onClick={onClose}>Cancel</button>
     </form>
   </div>
+  </>
     ) 
 }
 
